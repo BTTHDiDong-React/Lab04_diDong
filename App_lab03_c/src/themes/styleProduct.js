@@ -46,9 +46,19 @@ export default StyleSheet.create({
         fontSize: 15,
         marginTop: 5,
     },
+
+    iconQuestion: {
+        marginLeft: 10,
+        height: 22,
+        width: 22,
+        borderWidth: 1,
+        borderRadius: 100,
+        padding: 1,
+        paddingLeft: 4,
+    },
     // ----------------------------------
     containerBottom: {
-        backgroundColor: '#f00',
+        // backgroundColor: '#f00',
     },
-
+//   style={[{ }]}
 })
