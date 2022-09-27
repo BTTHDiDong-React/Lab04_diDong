@@ -5,7 +5,9 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 
 import styles from '../themes/styleProduct';
 
-const ProductComponent = ({ navigation }) => {
+const ProductComponent = ({  navigation }) => {
+
+    // const {colorId} = route.params;
     return (
         <View style={[styles.flex_1, {backgroundColor: '#fff'}]} >
             <StatusBar style="auto" />

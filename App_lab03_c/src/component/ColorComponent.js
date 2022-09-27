@@ -9,19 +9,42 @@ const ColorComponent = ({ navigation }) => {
     const [color, setcolor] = useState(require('../images/vs_den.png'));
 
     let arrColor = ['../images/vs_bac.png',
-        '../images/vs_bac.png', '../images/vs_bac.png', '../images/vs_bac.png'];
+        '../images/vs_do.png', '../images/vs_den.png', '../images/vs_xanh.png'];
 
     function SendColor() {
         console.log("🚀 ~ file: ColorComponent.js ~ line 12 ~ ColorComponent ~ zClick", zClick)
-        console.log("🚀 ~ file: ColorComponent.js ~ line 11 ~ ColorComponent ~ color", color)
 
-        // navigation.goBack();
+        navigation.navigate('ProductComponent', {colorId: zClick})
     }
 
-    function SetColor(xColor) {
-        // let value = require(arrColor[xColor]);
-        // setcolor(value);
+    function funSetColor(xColor) { // vitri moi dc chon
+        let value;
+
+        switch (xColor) {
+            case 0:
+                value = require('../images/vs_bac.png');
+                break;
+
+            case 1:
+                value = require('../images/vs_do.png');
+                break;
+
+            case 2:
+                value = require('../images/vs_den.png');
+                break;
+
+            case 3:
+                value = require('../images/vs_xanh.png');
+                break;
+
+            default:
+                break;
+        }
+
+        setcolor(value);
+
         setzClick(xColor);
+
 
 
     }
@@ -58,16 +81,16 @@ const ColorComponent = ({ navigation }) => {
 
                 <View style={[{}, styles.view_center]}   >
                     <TouchableOpacity style={[{ marginTop: 15, width: 100, height: 100, backgroundColor: '#C5F1FB' }]}
-                        onPress={() => { SetColor(0) }}
+                        onPress={() => { funSetColor(0) }}
                     ></TouchableOpacity>
                     <TouchableOpacity style={[{ marginTop: 15, width: 100, height: 100, backgroundColor: '#f00' }]}
-                        onPress={() => { SetColor(1) }}
+                        onPress={() => { funSetColor(1) }}
                     ></TouchableOpacity>
                     <TouchableOpacity style={[{ marginTop: 15, width: 100, height: 100, backgroundColor: '#000' }]}
-                        onPress={() => { SetColor(2) }}
+                        onPress={() => { funSetColor(2) }}
                     ></TouchableOpacity>
                     <TouchableOpacity style={[{ marginTop: 15, width: 100, height: 100, backgroundColor: '#234896' }]}
-                        onPress={() => { SetColor(3) }}
+                        onPress={() => { funSetColor(3) }}
                     ></TouchableOpacity>
                 </View>
 
