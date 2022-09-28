@@ -1,19 +1,32 @@
 import { View, Text, StatusBar, ImageBackground, Image, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 import styles from '../themes/styleProduct';
 
-const ProductComponent = ({  navigation }) => {
+const ProductComponent = ({ navigation, route }) => {
 
-    // const {colorId} = route.params;
+    let vs_color = require('../images/vs_bac.png');
+
+    const [linkImg, setlinkImg] = useState(vs_color);
+
+    // const { itemId, otherParam } = route.params;
+    React.useEffect(() => {
+        if (route.params?.post) {
+          // Post updated, do something with `route.params.post`
+          // For example, send the post to the server
+          setlinkImg(route.params?.post);
+          
+        }
+      }, [route.params?.post]);
+    
     return (
         <View style={[styles.flex_1, {backgroundColor: '#fff'}]} >
             <StatusBar style="auto" />
             <View style={[{}, styles.containerHeader, styles.view_center, styles.flex_3]}>
                 <Image style={[{}, styles.imgPhone]}
-                    source={require('../images/vs_bac.png')} />
+                    source={linkImg} />
             </View>
             <View style={[{ margin: 35 }, styles.containerCenter, styles.flex_2]}>
                 <Text style={[{}, styles.txtTitle]}>Điện Thoại Vsmart Joy 3 - Hàng chính hãng</Text>
@@ -50,7 +63,9 @@ const ProductComponent = ({  navigation }) => {
                         borderWidth: 1,
                         borderRadius: 10,
                     }, styles.row]}
-                        onPress={() => { navigation.push('ColorComponent') }}
+                        onPress={() => { navigation.navigate('ColorComponent', {
+                            linkAnh: linkImg,
+                          }) }}
                     >
                         <Text style={[{ fontSize: 16, marginLeft: 60 }, styles.flex_1]} >4 MÀU-CHỌN MÀU</Text>
                         {/* <Text> > </Text> */}
@@ -73,7 +88,7 @@ const ProductComponent = ({  navigation }) => {
                 </TouchableOpacity>
 
             </View>
-
+                
         </View>
     )
 }

@@ -3,18 +3,26 @@ import React, { useState } from 'react'
 
 import styles from '../themes/styleColor';
 
-const ColorComponent = ({ navigation }) => {
+const ColorComponent = ({ navigation, route }) => {
 
+    let vs_bac = require('../images/vs_bac.png');
+    let vs_do = require('../images/vs_do.png');
+    let vs_den = require('../images/vs_den.png');
+    let vs_xanh = require('../images/vs_xanh.png');
+
+    const { linkAnh } = route.params; // mau tu man hinh 1 truyen den
+    let linkImg = JSON.stringify(linkAnh);
     const [zClick, setzClick] = useState(0);  // vitri o chon
-    const [color, setcolor] = useState(require('../images/vs_den.png'));
+    const [color, setcolor] = useState(linkImg);
+    // console.log(JSON.stringify(linkColor));
 
-    let arrColor = ['../images/vs_bac.png',
-        '../images/vs_do.png', '../images/vs_den.png', '../images/vs_xanh.png'];
 
     function SendColor() {
-        console.log("🚀 ~ file: ColorComponent.js ~ line 12 ~ ColorComponent ~ zClick", zClick)
-
-        navigation.navigate('ProductComponent', {colorId: zClick})
+        navigation.navigate({
+            name: 'ProductComponent',
+            params: { post: color },
+            merge: true,
+        });
     }
 
     function funSetColor(xColor) { // vitri moi dc chon
@@ -22,19 +30,19 @@ const ColorComponent = ({ navigation }) => {
 
         switch (xColor) {
             case 0:
-                value = require('../images/vs_bac.png');
+                value = vs_bac;
                 break;
 
             case 1:
-                value = require('../images/vs_do.png');
+                value = vs_do;
                 break;
 
             case 2:
-                value = require('../images/vs_den.png');
+                value = vs_den;
                 break;
 
             case 3:
-                value = require('../images/vs_xanh.png');
+                value = vs_xanh;
                 break;
 
             default:
@@ -104,7 +112,9 @@ const ColorComponent = ({ navigation }) => {
                 >
                     <Text style={[{ padding: 8, color: '#fff', fontSize: 18, fontWeight: 'bold', }]}  >XONG</Text>
                 </TouchableOpacity>
+
             </View>
+            
         </View>
     )
 }
